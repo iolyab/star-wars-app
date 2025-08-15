@@ -1,14 +1,18 @@
 import React, { useState } from "react";
-import usePeople from "../hooks/usePeople";
+import usePeople from "../../hooks/usePeople";
 import classes from "./peopleList.module.scss";
-import { PageFlip } from "./PageFlip";
-import { CharacterModal } from "./CharacterModal";
-import { CharacterCard } from "./CharacterCard";
+import { PageFlip } from "../pageflip/PageFlip";
+
+import { CharacterCard } from "../card/CharacterCard";
+import type { Character } from "../../types";
+import { CharacterModal } from "../modal/CharacterModal";
 
 export default function PeopleList() {
-  const [page, setPage] = useState(1);
-  const [isOpen, setIsOpen] = useState(false);
-  const [selectedCharacter, setSelectedCharacter] = useState(null);
+  const [page, setPage] = useState<number>(1);
+
+  const [selectedCharacter, setSelectedCharacter] = useState<Character | null>(
+    null
+  );
   const pageSize = 12;
 
   const { people, totalPages, isLoading, isError, error, refetch } = usePeople(
@@ -17,13 +21,11 @@ export default function PeopleList() {
   );
 
   const handleClose = () => {
-    setIsOpen(false);
     setSelectedCharacter(null);
   };
 
-  const handleSelectCharacter = (character) => {
+  const handleSelectCharacter = (character: Character) => {
     setSelectedCharacter(character);
-    setIsOpen(true);
   };
 
   return (

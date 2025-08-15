@@ -1,7 +1,16 @@
 import React from "react";
 import { Modal } from "./Modal";
+import type { Character } from "../../types";
 
-export const CharacterModal = ({ character, onClose }) => {
+interface CharacterModalProps {
+  character: Character | null;
+  onClose: () => void;
+}
+
+export const CharacterModal: React.FC<CharacterModalProps> = ({
+  character,
+  onClose,
+}) => {
   if (!character) return null;
 
   return (

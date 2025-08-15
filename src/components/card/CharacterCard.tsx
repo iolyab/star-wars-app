@@ -1,7 +1,21 @@
 import React from "react";
-import classes from "./peopleList.module.scss";
+import classes from "./characterCard.module.scss";
 
-export const CharacterCard = ({ people, onSelectCharacter }) => {
+export interface Character {
+  name: string;
+  image?: string;
+  [key: string]: string | undefined;
+}
+
+interface CharacterCardProps {
+  people: Character[];
+  onSelectCharacter: (character: Character) => void;
+}
+
+export const CharacterCard: React.FC<CharacterCardProps> = ({
+  people,
+  onSelectCharacter,
+}) => {
   return (
     <div className={classes.characterList}>
       {people.map((character) => (

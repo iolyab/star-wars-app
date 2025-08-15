@@ -1,13 +1,23 @@
 import { useCallback, useEffect, useState } from "react";
 import { get } from "../api/apiClient";
+import type { Character } from "../types";
 
-function usePeople(page, pageSize = 12) {
-  const [allPeople, setAllPeople] = useState([]);
-  const [people, setPeople] = useState([]);
-  const [totalPages, setTotalPages] = useState(1);
-  const [isLoading, setIsLoading] = useState(false);
-  const [isError, setIsError] = useState(false);
-  const [error, setError] = useState(null);
+interface UsePeopleResult {
+  people: Character[];
+  totalPages: number;
+  isLoading: boolean;
+  isError: boolean;
+  error: string | null;
+  refetch: () => Promise<void>;
+}
+
+function usePeople(page: number, pageSize = 12): UsePeopleResult {
+  const [allPeople, setAllPeople] = useState<Character[]>([]);
+  const [people, setPeople] = useState<Character[]>([]);
+  const [totalPages, setTotalPages] = useState<number>(1);
+  const [isLoading, setIsLoading] = useState<boolean>(false);
+  const [isError, setIsError] = useState<boolean>(false);
+  const [error, setError] = useState<string | null>(null);
 
   const fetchPeople = useCallback(async () => {
     setIsLoading(true);
@@ -15,12 +25,14 @@ function usePeople(page, pageSize = 12) {
     setError(null);
 
     try {
-      const response = await get("/characters");
+      const response = await get<Character[]>("/characters");
       setAllPeople(response.data);
       setTotalPages(Math.ceil(response.data.length / pageSize));
-    } catch (err) {
+    } catch (err: unknown) {
       setIsError(true);
-      setError(err.message || "Something went wrong");
+      if (err instanceof Error) {
+        setError(err.message || "Something went wrong");
+      }
     } finally {
       setIsLoading(false);
     }

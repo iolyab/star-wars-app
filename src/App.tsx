@@ -1,6 +1,6 @@
 import classes from "./App.module.scss";
-import { NightSky } from "./components/NightSky";
-import PeopleList from "./components/PeopleList";
+import { NightSky } from "./components/background/NightSky";
+import PeopleList from "./components/list/PeopleList";
 
 function App() {
   return (
