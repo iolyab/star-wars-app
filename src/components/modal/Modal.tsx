@@ -6,6 +6,7 @@ interface ModalProps {
   onClose: () => void;
   title: string;
   children: ReactNode;
+  className?: string;
 }
 
 export const Modal: React.FC<ModalProps> = ({
@@ -13,11 +14,15 @@ export const Modal: React.FC<ModalProps> = ({
   onClose,
   title,
   children,
+  className,
 }) => {
   if (!isOpen) return null;
   return (
     <div className={classes.backLayout} onClick={onClose}>
-      <div className={classes.modal} onClick={(e) => e.stopPropagation}>
+      <div
+        className={`${classes.modal} ${className ?? ""}`}
+        onClick={(e) => e.stopPropagation}
+      >
         <h2>{title}</h2>
         <p>{children}</p>
         <button onClick={onClose} className={classes.modalBtn}>

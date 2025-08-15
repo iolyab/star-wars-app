@@ -1,6 +1,7 @@
 import React from "react";
 import { Modal } from "./Modal";
 import type { Character } from "../../types";
+import classes from "./modal.module.scss";
 
 interface CharacterModalProps {
   character: Character | null;
@@ -13,8 +14,24 @@ export const CharacterModal: React.FC<CharacterModalProps> = ({
 }) => {
   if (!character) return null;
 
+  const modalClass: string =
+    character.house === "Gryffindor"
+      ? classes.redModal
+      : character.house === "Ravenclaw"
+      ? classes.blueModal
+      : character.house === "Hufflepuff"
+      ? classes.yellowModal
+      : character.house === "Slytherin"
+      ? classes.greenModal
+      : classes.modal;
+
   return (
-    <Modal isOpen={true} onClose={onClose} title={character.name}>
+    <Modal
+      isOpen={true}
+      onClose={onClose}
+      title={character.name}
+      className={modalClass}
+    >
       <ul>
         <li>
           <strong>Alternate names: </strong>
