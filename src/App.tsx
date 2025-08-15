@@ -1,13 +1,16 @@
 import classes from "./App.module.scss";
+import { NightSky } from "./components/NightSky";
+import PeopleList from "./components/PeopleList";
 
 function App() {
   return (
-    <div>
+    <div className={classes.appContainer}>
+      <NightSky />
       <header>
-        <h1>Star Wars Characters</h1>
+        <h1>Harry Potter Characters</h1>
       </header>
       <main>
-        <p>This will be the people list</p>
+        <PeopleList />
       </main>
     </div>
   );

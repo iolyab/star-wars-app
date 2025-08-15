@@ -1,0 +1,29 @@
+.pageFlip {
+  display: flex;
+  flex-direction: row;
+  gap: 10px;
+  justify-content: center;
+  align-items: center;
+}
+
+.pageFlipBtn {
+  background-color: black;
+  border-style: solid;
+  border-color: white;
+  border-width: 1px;
+  color: white;
+  padding: 5px 15px;
+  transition: background-color 0.3s ease;
+
+  &:hover:not(:disabled) {
+    cursor: pointer;
+    background-color: white;
+    color: black;
+  }
+
+  &:disabled {
+    cursor: default;
+    color: grey;
+    border-color: grey;
+  }
+}

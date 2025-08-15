@@ -1,0 +1,47 @@
+.backLayout {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background-color: rgba(0, 0, 0, 0.5);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+}
+
+.modal {
+  background-color: white;
+  color: black;
+  padding: 16px;
+  min-width: 300px;
+  max-width: 600px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  align-items: center;
+  justify-content: center;
+  border-style: none;
+  border-radius: 40px;
+}
+
+h2 {
+  margin: 0;
+}
+
+.modalBtn {
+  background-color: white;
+  border-style: solid;
+  border-color: black;
+  border-width: 1px;
+  color: black;
+  padding: 5px 15px;
+  transition: background-color 0.3s ease;
+
+  &:hover {
+    cursor: pointer;
+    background-color: black;
+    color: white;
+  }
+}
